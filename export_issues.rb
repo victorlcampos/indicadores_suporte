@@ -2,7 +2,7 @@ require "httparty"
 
 #Vetor de issues
 issues = []
-chave = 
+chave = ENV["REDMINE_KEY"]
 #response (hash)
 response = JSON.parse(HTTParty.get("https://projects.visagio.com/issues.json?key=#{chave}&status_id=*").body)
 #chaves disponibilizados na hash response - ["issues", "total_count", "offset", "limit"]
@@ -31,7 +31,7 @@ CSV.open(file_path, "wb") do |csv|
   #headers
   csv << ["issue_id",
           "project_name",
-          "tracker_name", 
+          "tracker_name",
           "status_name",
           "priority_name",
           "company_name",
